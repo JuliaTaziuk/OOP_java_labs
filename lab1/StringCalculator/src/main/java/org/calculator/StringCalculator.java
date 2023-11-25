@@ -3,6 +3,9 @@ package org.calculator;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+
+
 
 public class StringCalculator {
     public int add(String numbers) throws IllegalArgumentException{
@@ -38,15 +41,21 @@ public class StringCalculator {
         if (numbers.startsWith("//")) {
             int newline_index = numbers.indexOf("\n");
             if (newline_index != -1) {
-                String delimiters = numbers.substring(2, newline_index);
-                delimiters = delimiters.replace("[", "").replace("]", "");
+                List<String> delimiters = new ArrayList<>();
+                String delimiterString = numbers.substring(2, newline_index);
+                Matcher matcher = Pattern.compile("\\[(.*?)\\]").matcher(delimiterString);
+                while (matcher.find()) {
+                    delimiters.add(Pattern.quote(matcher.group(1)));
+                }
                 numbers = numbers.substring(newline_index + 1);
-                return numbers.replaceAll(Pattern.quote(delimiters), ",");
+                for (String delimiter : delimiters) {
+                    numbers = numbers.replaceAll(delimiter, ",");
+                }
+                return numbers;
             }
         }
         return numbers;
     }
-
 
     private void check_for_negative_numbers(String[] numbers) {
         List<Integer> negative_numbers = new ArrayList<>();

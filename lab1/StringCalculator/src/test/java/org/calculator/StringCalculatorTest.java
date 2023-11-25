@@ -39,12 +39,12 @@ public class StringCalculatorTest {
 
     @Test
     void SumOfTheStringWithCustomDelimiters() {
-        assertEquals(3, calculator.add("//;\n1;2"));
+        assertEquals(3, calculator.add("//[;]\n1;2"));
     }
 
     @Test
     void SumOfTheStringWithCustomDelimiters2() {
-        assertEquals(60, calculator.add("//-\n22-5\n21,1\n2-9"));
+        assertEquals(60, calculator.add("//[-]\n22-5\n21,1\n2-9"));
     }
 
     @Test
@@ -72,5 +72,20 @@ public class StringCalculatorTest {
     @Test
     void SumOfTheStringWithCustomDelimitersOfAnyLenght() {
         assertEquals(6, calculator.add("//[**]\n1**2,3"));
+    }
+
+    @Test
+    void SumOfTheStringWithMultipleDelimiters(){
+        assertEquals(251, calculator.add("//[*][+]\n122*31+4+16\n78"));
+    }
+
+    @Test
+    void SumOfTheStringWithMultipleDelimiters2(){
+        assertEquals(60, calculator.add("//[&][*]\n28*24&1,4\n3"));
+    }
+
+    @Test
+    void SumOfTheStringWithMultipleDelimiters3(){
+        assertEquals(162, calculator.add("//[**][+]\n82**21+42**17"));
     }
 }
