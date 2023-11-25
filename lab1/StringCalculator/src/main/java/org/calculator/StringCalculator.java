@@ -39,12 +39,14 @@ public class StringCalculator {
             int newline_index = numbers.indexOf("\n");
             if (newline_index != -1) {
                 String delimiters = numbers.substring(2, newline_index);
+                delimiters = delimiters.replace("[", "").replace("]", "");
                 numbers = numbers.substring(newline_index + 1);
-                return numbers.replaceAll("[" + Pattern.quote(delimiters) + "]*", ",");
+                return numbers.replaceAll(Pattern.quote(delimiters), ",");
             }
         }
         return numbers;
     }
+
 
     private void check_for_negative_numbers(String[] numbers) {
         List<Integer> negative_numbers = new ArrayList<>();

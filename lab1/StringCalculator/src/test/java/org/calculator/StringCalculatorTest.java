@@ -63,4 +63,14 @@ public class StringCalculatorTest {
     void NumbersAboveThousandDoNotCount() {
         assertEquals(1295, calculator.add("82,194\n1000,19\n2824"));
     }
+
+    @Test
+    void UnknownDelimiterThrowsException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.add("\"//[**]\\n1**2*3\""));
+    }
+    @Test
+    void SumOfTheStringWithCustomDelimitersOfAnyLenght() {
+        assertEquals(6, calculator.add("//[**]\n1**2,3"));
+    }
 }
