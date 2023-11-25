@@ -58,4 +58,9 @@ public class StringCalculatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> calculator.add("-2,-1,-4"));
     }
+
+    @Test
+    void NumbersAboveThousandDoNotCount() {
+        assertEquals(1295, calculator.add("82,194\n1000,19\n2824"));
+    }
 }

@@ -25,7 +25,10 @@ public class StringCalculator {
         int sum = 0;
         for (String number : numbers_array) {
             int num = Integer.parseInt(number);
-            sum += num;
+
+            if (num <= 1000){
+                sum += num;
+            }
         }
 
         return sum;
