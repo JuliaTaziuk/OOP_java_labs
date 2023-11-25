@@ -25,4 +25,15 @@ public class StringCalculatorTest {
     void SumOfTenComaSeparatedNumbers() {
         assertEquals(1034, calculator.add("4,22,641,13,8,19,0,54,272,1"));
     }
+
+    @Test
+    void SumOfThreeNumbersSeparatedByComaAndNewLineCharacter() {
+        assertEquals(6, calculator.add("1\n2,3"));
+    }
+
+    @Test
+    void TwoDelimitersInRowShouldReturnStringCalculatorException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.add("1,\n2"));
+    }
 }
