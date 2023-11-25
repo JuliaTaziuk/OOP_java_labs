@@ -9,10 +9,6 @@ public class StringCalculator {
 
         String[] numbers_array = numbers.split(",");
 
-        if (numbers_array.length > 2) {
-            throw new IllegalArgumentException("Only two numbers are allowed.");
-        }
-
         int sum = 0;
         for (String number : numbers_array) {
             int num = Integer.parseInt(number);

@@ -22,8 +22,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void SumOfMoreThanTwoNumbersIsNotAllowed() {
-        assertThrows(IllegalArgumentException.class,
-                () -> calculator.add("1,2,3"));
+    void SumOfTenComaSeparatedNumbers() {
+        assertEquals(1034, calculator.add("4,22,641,13,8,19,0,54,272,1"));
     }
 }
