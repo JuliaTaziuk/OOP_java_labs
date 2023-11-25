@@ -52,4 +52,10 @@ public class StringCalculatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> calculator.add("//;\n1;;;1;1"));
     }
+
+    @Test
+    void SumOfTheStringWithNegativeNumbers() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.add("-2,-1,-4"));
+    }
 }

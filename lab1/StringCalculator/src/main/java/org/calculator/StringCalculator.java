@@ -1,6 +1,8 @@
 package org.calculator;
 
 import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StringCalculator {
     public int add(String numbers) throws IllegalArgumentException{
@@ -15,7 +17,11 @@ public class StringCalculator {
         if (numbers.contains(",,")){
             throw new IllegalArgumentException("There cannot be two delimiters in a row");
         }
+
         String[] numbers_array = numbers.split(",");
+
+        check_for_negative_numbers(numbers_array);
+
         int sum = 0;
         for (String number : numbers_array) {
             int num = Integer.parseInt(number);
@@ -24,6 +30,7 @@ public class StringCalculator {
 
         return sum;
     }
+
     private String remove_delimiters(String numbers){
         if (numbers.startsWith("//")) {
             int newline_index = numbers.indexOf("\n");
@@ -35,4 +42,21 @@ public class StringCalculator {
         }
         return numbers;
     }
+
+    private void check_for_negative_numbers(String[] numbers) {
+        List<Integer> negative_numbers = new ArrayList<>();
+
+        for (String number : numbers) {
+            int num = Integer.parseInt(number);
+
+            if (num < 0) {
+                negative_numbers.add(num);
+            }
+        }
+
+        if (!negative_numbers.isEmpty()) {
+            throw new IllegalArgumentException("Negative numbers are not supported: " + negative_numbers);
+        }
+    }
 }
+
