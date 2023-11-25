@@ -32,8 +32,24 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void TwoDelimitersInRowShouldReturnStringCalculatorException() {
+    void TwoDelimitersInRowShouldReturnIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class,
                 () -> calculator.add("1,\n2"));
+    }
+
+    @Test
+    void SumOfTheStringWithCustomDelimiters() {
+        assertEquals(3, calculator.add("//;\n1;2"));
+    }
+
+    @Test
+    void SumOfTheStringWithCustomDelimiters2() {
+        assertEquals(60, calculator.add("//-\n22-5\n21,1\n2-9"));
+    }
+
+    @Test
+    void TwoCustomDelimitersInRowShouldReturnIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.add("//;\n1;;;1;1"));
     }
 }
